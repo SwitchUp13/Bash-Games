@@ -1,0 +1,68 @@
+#!/bin/bash
+
+# Generate a random number between 1 and 20
+number=$(( ( RANDOM % 20 ) + 1 ))
+
+# Initialize the variable for the user's guess
+guess=0
+
+# Initialize the variable to keep track of the distance from the number
+distance=20
+
+
+#Initialize variable for attempts
+i=7
+
+#Begin while loopto keep guessing if wrong
+while [ $guess -ne $number ]
+do
+
+		# Ask the user for their guess
+		read -p "Guess a number between 1 and 20: " guess
+		#Display attemtps remaing
+		echo "You have $i attempts remaining."
+		#End program when max attemtps reached
+		if [[ i -eq 0 ]]
+		then
+			echo "You have run out of attempts. GAME OVER!"
+			exit 1
+		else
+
+			# Check if the user is getting closer or farther away from the number
+			new_distance=$(( $number -  $guess ))
+			#Absolute value - always positive inetegers
+			if [[ $new_distance -lt 0 ]]; then
+				new_distance=$((-new_distance))
+			fi
+			#HERE ARE THE OPTIONS TO INPUT BY USER
+			#correct answer guess
+			if [[ $new_distance -eq 0 ]]
+			then
+				echo "Congratulations! You guessed the correct number: $number"
+				exit 0
+				#USER CHOSE SAME NUMBER OR ANSWER IN BETWEEN NUMBERS
+			elif [[ $new_distance -eq  $distance ]]   
+			then
+				echo "Your guess is about the same distance away from the number."
+				#GETTING CLOSER
+			elif [[ $new_distance -lt $distance ]]
+			then
+				#VERY CLOSE
+				if [[ $new_distance -le 3 ]]
+				then
+					echo "Uh Oh you're HOT! But try again"
+				else
+					echo "Wrong answer but you're getting WARMER. TRY AGAIN"
+				fi
+				#FARTHER FROM ANSWER
+			else
+				echo "Wrong answer, you're getting COLDER. TRY AGAIN"
+			fi
+
+    #Update the distance variable
+    distance=$new_distance
+    #Subtract one attempt from total attempts
+    i=$((i-1))
+		fi
+	done
+

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+random=$((1 + $RANDOM % 10))
+echo "Choose a number from 1-10: "
+read num
+until [ $num == $random ]
+do
+	echo "$num is not correct. TRY AGAIN!"
+	read num
+done
+echo "CONGRATUALTIONS YOU WIN!!"

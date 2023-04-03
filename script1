@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo "What is your favorite number"
+read number
+if (( number <= 5 ))
+then
+	echo "That is a terrible number"
+else
+	echo "That is a great number!"
+fi

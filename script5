@@ -1,0 +1,11 @@
+#!/bin/bash
+echo "What is your name?"
+read name
+loser=brandon
+loser2=Brandon
+if [[ "$name" == "$loser" ]] || [[ "$name" == "$loser2" ]]
+then
+	echo "$name is a lame name... Eat Dirt!"
+else
+	echo "$name is a wonderful name! I hope life treats you well!"
+fi

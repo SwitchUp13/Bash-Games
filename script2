@@ -1,0 +1,6 @@
+#!/bin/bash
+
+NOW=$(date +"%F")
+echo "The current date is: $NOW "
+filec=$(ls  $(pwd) | wc -l)
+echo "There are $filec files inside $(wd)"
